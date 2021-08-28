@@ -32,10 +32,16 @@ When loading a character, double clicking the character name or clicking Play wi
 # Usage
 
 ## Arguments
-You can run `D2ROffline.exe` with arguments to solve some problems.
+You can run `D2ROffline.exe` with arguments to solve some problems. Try launching with arguments by using a [batch script](#Bash).
 
 ### -FixLocalSave
 `.\D2ROffline.exe -FixLocalSave` This will update your save files to allow you to play your characters in single-player mode *(act3 to act5 included)* instead of hosting a TCP/IP game. This argument prevents the game from loading and will just patch your save files. **Please note that this will also unlock all quests so that you can jump right into all acts.**
+
+### -w
+`.\D2ROffline.exe -w` Launch the game in Windowed Mode.
+
+### -txt -direct
+`.\D2ROffline.exe -txt -direct` Allows you to use modified txt files (Example: `E:\D2R\Data\global\excel\treasureclassex.txt`) extracted from the game using [CascView](https://www.hiveworkshop.com/threads/ladiks-casc-viewer.331540/). 
 
 ### -FixLocalSaveNoQuests
 `.\D2ROffline.exe -FixLocalSaveNoQuests` Does the same as `-FixLocalSave` but without unlocking any quests.
@@ -44,7 +50,7 @@ You can run `D2ROffline.exe` with arguments to solve some problems.
 `.\D2ROffline.exe -FixLocalSaveResetQuests` In case you used `-FixLocalSave` by mistake and now you want to reset the quests back to normal.
 
 ### -UpdateKeyBinds
-`.\D2ROffline.exe -UpdateKeyBinds` This will sync your keybindings between characters.
+`.\D2ROffline.exe -UpdateKeyBinds` This will sync your keybindings between characters using custom`.key` files.
 
 ### -Delay \<delay in ms>
 `.\D2ROffline.exe C:\D2R\Game.exe -Delay 35` This will change the delay amount when patching your game, default is 25. Use this and try different values to help with crashes after being in-game for certain amounts of time.
@@ -53,7 +59,7 @@ You can run `D2ROffline.exe` with arguments to solve some problems.
 `.\D2ROffline.exe C:\D2R\Game.exe` Use this to specify a path to Game.exe if you're not running `D2ROffline.exe` from the same directory.
 
 ### Passing arguments
-`.\D2ROffline C:\D2R\Game.exe -txt -direct -whatever -w` The patcher will pass all other arguments, which are in our case `-txt -direct -whatever -w`, to the game so that you can launch them as you wish.
+`.\D2ROffline C:\D2R\Game.exe -txt -direct -w` The patcher will pass all other arguments, which are in our case `-txt -direct -w`, to the game so that you can launch them as you wish.
 
 ## Custom Patches
 
@@ -92,6 +98,26 @@ Language patches to force the client into loading a language, thanks to Ferib (m
 0x1446C8:+0x270EC: ~ Spanish *[esMX]*
 0x1446C8:+0x270F4: ~ Japanese *[jaJP]*
 0x1446C8:+0x270FC: ~ Brazilian *[ptBR]*
+```
+
+## How To: Connect via TCP/IP
+
+The host must login to their router's configuration interface (usually 192.168.1.254 or 192.168.0.254 or try changing `254` to `1`) and forward TCP port 4000 to their internal IP.  The host can find the internal IP address by using the command `ipconfig` from a CMD window.
+    
+Any Player(s) wanting to connect to the host then simply enter the host's external IP in the game's interface. 
+The host can find this IP address by visiting whatsmyip.org or running `ipconfig` again.
+
+ **The shared stash does not work for TCP/IP games.**  Back up your shared stash  **before**  playing TCP/IP, and do not put items in the stash during TCP/IP games, all items in shared stash will be lost.
+
+# Bash
+
+Copy and Paste the bash script below into Notepad and save the file to your desktop as something like `D2R-Offline.bat`. Launch the game using this file.
+
+```
+@ECHO OFF
+E:
+cd "D2R Alpha"
+.\D2ROffline.exe "E:\D2R\Game.exe" -txt -direct -delay 300
 ```
 
 > _NOTE: The above patches are modifying the .text section of the game, for those that want to patch the .data section you can simply use Cheat Engine because the anti-cheating does not scan those areas for modified values._
