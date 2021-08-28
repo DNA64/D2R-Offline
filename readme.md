@@ -4,9 +4,13 @@ A simple tool that remaps & bypasses *Diablo II Resurrected* module and then con
 
 # Setup
 
+## Getting Started
+
+With the Technical Alpha and Beta now over, the installation files available on blizzards servers have now been encrypted, making it pointless to download them directly from the Battle.net servers. For legal reasons this means you'll have to find the files on your own if you don't already have them. Once you have found the files, you can proceed with the guide.
+
 ## Installing
 
-1. You will need the *Diablo II Resurrected* game files.
+1. You will need the *Diablo II Resurrected* game files, as mentioned above.
 
 1. You may also need [.NET Framework v4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net472-web-installer).
 
